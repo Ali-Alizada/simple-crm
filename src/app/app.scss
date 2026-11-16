@@ -1,5 +1,7 @@
 
 .mat-drawer-container{
+  height: 100vh;
+
   .sidenav{
     width: 300px;
   }
@@ -50,6 +52,9 @@ mat-toolbar {
   }
 }
 
-.mat-drawer-container{
-  height: 100vh;
+.router-container{
+  padding-top: 16px;
+  padding-left: 64px;
 }
+
+
