@@ -45,13 +45,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
 
-  .dialog-btns {
+  h1{
+  padding-left: 0;
+  }
+
+  .form-name-container{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
   }
+
+  .form-date-container{
+    width: 100%;
+  }
+
+  .adressA{
+    display: flex;
+    gap: 16px;
+  }
+  .adressB{
+    display: flex;
+    gap: 16px;
+  }
+
+
 }
