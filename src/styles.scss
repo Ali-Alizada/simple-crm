@@ -37,3 +37,21 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+.add-user-dialog-panel {
+  --mat-dialog-container-shape: 12px;
+}
+
+.add-user-dialog-panel .mat-mdc-dialog-surface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+
+  .dialog-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+}
