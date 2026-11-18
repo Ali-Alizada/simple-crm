@@ -6,10 +6,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { Dashboard } from './dashboard/dashboard';
-import { User } from './user/user';
+import { UserComponent } from './user/user';
 
 export const routes: Routes = [
   {path: 'dashboard', component: Dashboard},
-  {path: 'user', component: User},
+  {path: 'user', component: UserComponent},
 
 ];

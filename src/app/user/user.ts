@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,6 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AddUserDialog } from '../add-user-dialog/add-user-dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { User } from '../../models/user.class';
 
 @Component({
   imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule],
@@ -13,8 +14,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './user.scss',
   templateUrl: './user.html',
 })
-export class User {
-  constructor(private readonly dialog: MatDialog) {}
+
+export class UserComponent implements OnInit{
+  user = new User();
+
+
+  constructor(private readonly dialog: MatDialog) {
+
+  }
+
+  ngOnInit(): void {}
 
   openDialog(): void {
     this.dialog.open(AddUserDialog, {
