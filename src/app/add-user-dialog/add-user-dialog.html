@@ -65,13 +65,29 @@
         </mat-form-field>
     </div>
   </div>
-
-
-
-
-
 </div>
+
 <div class="dialog-btns" mat-dialog-actions>
-  <button mat-button>Cancel</button>
-  <button mat-button cdkFocusInitial (click)="saveUser()">Save</button>
+  <button mat-button (click)="dialogRef.close()">
+    Cancel
+  </button>
+
+  <button
+    mat-button
+    cdkFocusInitial
+    [disabled]="saving"
+    (click)="saveUser()">
+    {{ saving ? 'Saving...' : 'Save' }}
+  </button>
 </div>
+
+<p *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</p>
+
+
+
+<!-- Test button:  -->
+<!-- <button mat-button (click)="checkFirebase()">
+  Test Firebase Connection
+</button> -->
