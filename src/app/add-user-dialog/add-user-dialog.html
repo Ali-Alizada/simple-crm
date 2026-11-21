@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
 <div mat-dialog-content>
   <h1 mat-dialog-title>Add User</h1>
@@ -6,14 +7,14 @@
   <div class="form-name-container">
     <mat-form-field appearance="outline">
       <mat-label>First Name</mat-label>
-      <input [(ngModel)]="user.firstName" matInput placeholder="your name gose here">
+      <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="your name gose here">
       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Last Name</mat-label>
-      <input [(ngModel)]="user.lastName" matInput placeholder="your name gose here">
+      <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="your name gose here">
       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
@@ -23,7 +24,7 @@
   <div>
       <mat-form-field appearance="outline" class="form-date-container">
         <mat-label>Birth Date</mat-label>
-        <input [(ngModel)]="birthDate" matInput placeholder="your birth date" [matDatepicker]="picker1">
+        <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="your birth date" [matDatepicker]="picker1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
         <!-- <mat-hint>Please enter a name</mat-hint> -->
@@ -34,7 +35,7 @@
     <div>
           <mat-form-field appearance="outline" class="form-adressOne-container">
           <mat-label>Street</mat-label>
-          <input [(ngModel)]="user.street" matInput placeholder="your street name">
+          <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="your street name">
           <!-- <mat-hint>Please enter a name</mat-hint> -->
         </mat-form-field>
     </div>
@@ -42,7 +43,7 @@
     <div>
           <mat-form-field appearance="outline" class="form-adressTow-container">
           <mat-label>Hose No.</mat-label>
-          <input [(ngModel)]="user.houseNo" matInput placeholder="your hose No.">
+          <input [disabled]="loading" [(ngModel)]="user.houseNo" matInput placeholder="your hose No.">
           <!-- <mat-hint>Please enter a name</mat-hint> -->
         </mat-form-field>
     </div>
@@ -52,7 +53,7 @@
       <div>
         <mat-form-field appearance="outline" class="adressThree-container">
         <mat-label>Zip Code</mat-label>
-        <input [(ngModel)]="user.zipCode" matInput placeholder="your zip code">
+        <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="your zip code">
         <!-- <mat-hint>Please enter a name</mat-hint> -->
         </mat-form-field>
     </div>
@@ -60,7 +61,7 @@
     <div>
           <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <input [(ngModel)]="user.city" matInput placeholder="your city name">
+          <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="your city name">
           <!-- <mat-hint>Please enter a name</mat-hint> -->
         </mat-form-field>
     </div>
@@ -76,6 +77,7 @@
     mat-button
     cdkFocusInitial
     [disabled]="saving"
+    [disabled]="loading"
     (click)="saveUser()">
     {{ saving ? 'Saving...' : 'Save' }}
   </button>
@@ -85,9 +87,3 @@
   {{ errorMessage }}
 </p>
 
-
-
-<!-- Test button:  -->
-<!-- <button mat-button (click)="checkFirebase()">
-  Test Firebase Connection
-</button> -->

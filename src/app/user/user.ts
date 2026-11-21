@@ -7,9 +7,10 @@ import { AddUserDialog } from '../add-user-dialog/add-user-dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { User } from '../../models/user.class';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatCardModule],
   selector: 'app-user',
   styleUrl: './user.scss',
   templateUrl: './user.html',

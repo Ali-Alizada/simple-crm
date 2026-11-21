@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatProgressBarModule} from '@angular/material/progress-bar'
 
 import { FormsModule } from '@angular/forms';
 
@@ -23,6 +24,7 @@ import { CommonModule } from '@angular/common';
     MatDatepickerModule,
     FormsModule,
     CommonModule,
+    MatProgressBarModule
   ],
   selector: 'app-add-user-dialog',
   styleUrl: './add-user-dialog.scss',
@@ -31,6 +33,8 @@ import { CommonModule } from '@angular/common';
 export class AddUserDialog {
   user = new User();
   birthDate!: Date;
+  loading = false;
+
 
   saving = false;
   errorMessage = '';
@@ -44,7 +48,7 @@ export class AddUserDialog {
 
     async saveUser() {
       if (this.saving) return;
-
+      this.loading = true;
       this.saving = true;
       this.errorMessage = '';
 
@@ -59,6 +63,7 @@ export class AddUserDialog {
           this.ContactService.addContact(this.user),
           new Promise<never>((_, reject) =>
             setTimeout(() => reject(new Error('Saving timed out after 15 seconds')), 15000)
+            
           )
         ]);
 
@@ -70,37 +75,10 @@ export class AddUserDialog {
         console.error('Error saving user:', error);
         this.errorMessage = 'User could not be saved. Please check the console.';
       } finally {
+        this.loading = false;
         this.saving = false;
       }
     }
 
-
-    // Test: voruübergehend: 
-
-
-// async checkFirebase() {
-//   try {
-//     console.log('Testing Firebase connection...');
-
-//     const result = await this.ContactService.testConnection();
-
-//     console.log('Firebase connection successful!');
-//     console.log('Documents found:', result.size);
-
-//   } catch (error) {
-//     console.error('Firebase connection failed:', error);
-//   }
-// }
-
-
-
 }
 
-
-
-  // saveUser(){
-  //   this.user.birthDate = this.birthDate.getTime();
-  //   console.log('Current user is', this.user);
-
-     
-  // }
