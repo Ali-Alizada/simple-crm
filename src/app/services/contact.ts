@@ -5,9 +5,10 @@ import {
   Firestore,
   collection,
   addDoc,
+  collectionData,
   serverTimestamp,
-  getDocsFromServer
 } from '@angular/fire/firestore';
+import { Observable, map } from 'rxjs';
 
 import { User } from '../../models/user.class';
 
@@ -19,10 +20,8 @@ export class ContactService {
   private firestore = inject(Firestore);
   private injector = inject(Injector);
 
-  async addContact(user: User) {
-
+  addContact(user: User) {
     return runInInjectionContext(this.injector, () => {
-
       const contactsCollection = collection(
         this.firestore,
         'contacts'
@@ -32,21 +31,16 @@ export class ContactService {
         ...user,
         createdAt: serverTimestamp()
       });
-
     });
   }
 
+  getContacts(): Observable<User[]> {
+    return runInInjectionContext(this.injector, () => {
+      const contactsCollection = collection(this.firestore, 'contacts');
 
-  // Testweise
-
-//   async testConnection() {
-//   return runInInjectionContext(this.injector, () => {
-//     const contactsCollection = collection(
-//       this.firestore,
-//       'contacts'
-//     );
-
-//     return getDocsFromServer(contactsCollection);
-//   });
-// }
+      return collectionData(contactsCollection).pipe(
+        map((contacts) => contacts.map((contact) => new User(contact)))
+      );
+    });
+  }
 }

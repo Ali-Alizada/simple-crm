@@ -1,19 +1,28 @@
 
 <mat-card>
   <table class="card-container">
-    <tr>
-      <th>Name</th>
-      <th>E-mail</th>
-      <th>City</th>
-    </tr>
-    <tr>
-      <td>text</td>
-      <td>text</td>
-      <td>text</td>
-    </tr>
+    <thead>
+      <tr class="header-container">
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="contacts$ | async as contacts">
+        <tr *ngFor="let contact of contacts">
+          <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+          <td>{{ contact.street }} {{ contact.houseNo }}</td>
+          <td>{{ contact.zipCode }} {{ contact.city }}</td>
+        </tr>
+        <tr *ngIf="contacts.length === 0">
+          <td colspan="3">No contacts saved yet.</td>
+        </tr>
+      </ng-container>
+    </tbody>
   </table>
 </mat-card>
 
- <button (click)="openDialog()" class="add-user" mat-fab matTooltip="Add user">
-    <mat-icon>add</mat-icon>
-  </button>
+<button (click)="openDialog()" class="add-user" mat-fab matTooltip="Add user">
+  <mat-icon>add</mat-icon>
+</button>
