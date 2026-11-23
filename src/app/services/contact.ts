@@ -6,6 +6,8 @@ import {
   collection,
   addDoc,
   collectionData,
+  doc,
+  docData,
   serverTimestamp,
 } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
@@ -22,13 +24,12 @@ export class ContactService {
 
   addContact(user: User) {
     return runInInjectionContext(this.injector, () => {
-      const contactsCollection = collection(
-        this.firestore,
-        'contacts'
-      );
+      const contactsCollection = collection(this.firestore, 'contacts');
+      const contactData: Partial<User> = { ...user };
+      delete contactData.id;
 
       return addDoc(contactsCollection, {
-        ...user,
+        ...contactData,
         createdAt: serverTimestamp()
       });
     });
@@ -38,8 +39,18 @@ export class ContactService {
     return runInInjectionContext(this.injector, () => {
       const contactsCollection = collection(this.firestore, 'contacts');
 
-      return collectionData(contactsCollection).pipe(
+      return collectionData(contactsCollection, { idField: 'id' }).pipe(
         map((contacts) => contacts.map((contact) => new User(contact)))
+      );
+    });
+  }
+
+  getContactById(id: string): Observable<User | null> {
+    return runInInjectionContext(this.injector, () => {
+      const contactRef = doc(this.firestore, 'contacts', id);
+
+      return docData(contactRef).pipe(
+        map((contact) => contact ? new User({ ...contact, id }) : null)
       );
     });
   }

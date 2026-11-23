@@ -7,9 +7,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { Dashboard } from './dashboard/dashboard';
 import { UserComponent } from './user/user';
+import { UserDetailComponent } from './user-detail/user-detail';
 
 export const routes: Routes = [
   {path: 'dashboard', component: Dashboard},
   {path: 'user', component: UserComponent},
+  {path: 'user/:id', component: UserDetailComponent},
 
 ];

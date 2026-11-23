@@ -1,0 +1,92 @@
+<ng-container *ngIf="contact$ | async as contact; else missingContact">
+
+  <mat-card>
+    <div class="basic-detail">
+        <img src="./assets/icons/b-detail.png" alt="basic-detail-icon">
+        <p>BASI DETAILS</p>
+    </div>
+
+    <mat-card-header>
+
+      <div class="img-profile-container">
+        <img src="./assets/imgs/profile-img.png" alt="Profile-img">
+        <button>Upload resume</button>
+      </div>
+
+      <div class="detail-profile-container">
+        <mat-card-title>{{ contact.firstName }} {{ contact.lastName }}</mat-card-title>
+        <p> {{ contact.email || '—' }}</p>
+        <!-- <p><strong>City: </strong> {{ contact.city }}</p> -->
+      </div>
+
+    </mat-card-header>
+
+  </mat-card>
+
+  <mat-card-content>
+    <div class="basic-detail">
+        <img src="./assets/icons/perso-detail.png" alt="basic-detail-icon">
+        <p>BASI DETAILS</p>
+    </div>
+
+    <div class="deatils-container">
+      <div class="details">
+        <strong>E-mail:</strong>
+        <p>{{ contact.email || '—' }}</p>
+      </div>
+      <div class="details">
+        <strong>Birth date:</strong>
+        <p> {{ contact.birthDate | date }}</p>
+      </div>
+      <div class="details">
+        <strong>Address:</strong>
+        <p>{{ contact.street }} {{ contact.houseNo }}</p>
+      </div>
+      <div class="details">
+        <strong>City:</strong>
+        <p> {{ contact.zipCode }} {{ contact.city }}</p>
+      </div>
+    </div>
+
+  </mat-card-content>
+
+  <div class="profitional-detail-container">
+
+    <div class="basic-detail">
+        <img src="./assets/icons/pro-detail.png" alt="basic-detail-icon">
+        <p>BASI DETAILS</p>
+    </div>
+    
+    <div class="deatils-container">
+      <div class="details">
+        <strong>E-mail:</strong>
+        <p>{{ contact.email || '—' }}</p>
+      </div>
+      <div class="details">
+        <strong>Birth date:</strong>
+        <p> {{ contact.birthDate | date }}</p>
+      </div>
+      <div class="details">
+        <strong>Address:</strong>
+        <p>{{ contact.street }} {{ contact.houseNo }}</p>
+      </div>
+      <div class="details">
+        <strong>City:</strong>
+        <p> {{ contact.zipCode }} {{ contact.city }}</p>
+      </div>
+    </div>
+
+  </div>
+
+</ng-container>
+
+<ng-template #missingContact>
+  <mat-card>
+    <mat-card-content>Contact not found.</mat-card-content>
+  </mat-card>
+</ng-template>
+
+<div class="btn-container">
+  <button class="back-btn" mat-button routerLink="/user">Back to contacts</button>
+  <button class="save-btn" mat-button routerLink="/user">Save Change</button>
+</div>

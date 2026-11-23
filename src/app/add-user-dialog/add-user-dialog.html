@@ -23,6 +23,15 @@
 
   <div>
       <mat-form-field appearance="outline" class="form-date-container">
+      <mat-label>E-mail</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="your email gose here">
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+      <!-- <mat-hint>Please enter a name</mat-hint> -->
+      </mat-form-field>
+  </div>
+
+  <div>
+      <mat-form-field appearance="outline" class="form-date-container">
         <mat-label>Birth Date</mat-label>
         <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="your birth date" [matDatepicker]="picker1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>

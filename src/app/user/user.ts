@@ -11,6 +11,7 @@ import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
 import { ContactService } from '../services/contact';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [
@@ -32,9 +33,14 @@ export class UserComponent {
 
   constructor(
     private readonly dialog: MatDialog,
-    private readonly contactService: ContactService
+    private readonly contactService: ContactService,
+    private readonly router: Router
   ) {
     this.contacts$ = this.contactService.getContacts();
+  }
+
+  openContact(id: string): Promise<boolean> {
+    return this.router.navigate(['/user', id]);
   }
 
   openDialog(): void {

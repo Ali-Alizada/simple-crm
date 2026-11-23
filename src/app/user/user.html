@@ -4,16 +4,24 @@
     <thead>
       <tr class="header-container">
         <th>Name</th>
-        <th>Address</th>
+        <th>E-mail</th>
         <th>City</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngIf="contacts$ | async as contacts">
-        <tr *ngFor="let contact of contacts">
-          <td>{{ contact.firstName }} {{ contact.lastName }}</td>
-          <td>{{ contact.street }} {{ contact.houseNo }}</td>
-          <td>{{ contact.zipCode }} {{ contact.city }}</td>
+        <tr
+          *ngFor="let contact of contacts"
+          (click)="openContact(contact.id)"
+          (keydown.enter)="openContact(contact.id)"
+          (keydown.space)="openContact(contact.id); $event.preventDefault()"
+          tabindex="0"
+          role="link"
+          [attr.aria-label]="'Open ' + contact.firstName + ' ' + contact.lastName"
+        >
+          <td> {{ contact.firstName }} {{ contact.lastName }}</td>
+          <td> {{ contact.email }} </td>
+          <td> {{ contact.city }} </td>
         </tr>
         <tr *ngIf="contacts.length === 0">
           <td colspan="3">No contacts saved yet.</td>

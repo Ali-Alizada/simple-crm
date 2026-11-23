@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { provideRouter, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { describe, expect, it, vi } from 'vitest';
 import { ContactService } from '../services/contact';
@@ -22,6 +23,8 @@ describe('UserComponent', () => {
                 {
                   firstName: 'Ada',
                   lastName: 'Lovelace',
+                  id: 'contact-123',
+                  email: 'ada@example.com',
                   street: 'Main Street',
                   houseNo: '1',
                   zipCode: '12345',
@@ -31,6 +34,7 @@ describe('UserComponent', () => {
               ]),
           },
         },
+        provideRouter([]),
       ],
     }).compileComponents();
 
@@ -45,7 +49,17 @@ describe('UserComponent', () => {
 
   it('should render saved contacts in the table', () => {
     expect(fixture.nativeElement.textContent).toContain('Ada Lovelace');
-    expect(fixture.nativeElement.textContent).toContain('Main Street 1');
-    expect(fixture.nativeElement.textContent).toContain('12345 London');
+    expect(fixture.nativeElement.textContent).toContain('ada@example.com');
+    expect(fixture.nativeElement.textContent).toContain('London');
+  });
+
+  it('should navigate to the contact detail when its row is clicked', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+    const row = fixture.nativeElement.querySelector('tbody tr') as HTMLTableRowElement;
+
+    row.click();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/user', 'contact-123']);
   });
 });
