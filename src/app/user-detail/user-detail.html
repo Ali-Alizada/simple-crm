@@ -2,9 +2,16 @@
 
   <mat-card>
     <div class="basic-detail">
-        <img src="./assets/icons/b-detail.png" alt="basic-detail-icon">
-        <p>BASI DETAILS</p>
+      <mat-icon>badge</mat-icon>
+      <p>BASIC DETAILS</p>
     </div>
+
+    <button class="more_vert" mat-icon-button [matMenuTriggerFor]="basicMenu">
+      <mat-icon>more_vert</mat-icon>
+        <mat-menu #basicMenu="matMenu">
+        <button mat-menu-item (click)="editBasic(contact)">Edit</button>
+      </mat-menu>
+    </button>
 
     <mat-card-header>
 
@@ -15,8 +22,6 @@
 
       <div class="detail-profile-container">
         <mat-card-title>{{ contact.firstName }} {{ contact.lastName }}</mat-card-title>
-        <p> {{ contact.email || '—' }}</p>
-        <!-- <p><strong>City: </strong> {{ contact.city }}</p> -->
       </div>
 
     </mat-card-header>
@@ -25,14 +30,25 @@
 
   <mat-card-content>
     <div class="basic-detail">
-        <img src="./assets/icons/perso-detail.png" alt="basic-detail-icon">
-        <p>BASI DETAILS</p>
+      <mat-icon>manage_accounts</mat-icon>
+      <p>PERSONAL DETAILS</p>
     </div>
+
+    <button class="more_vert" mat-icon-button [matMenuTriggerFor]="persoMenu">
+      <mat-icon>more_vert</mat-icon>
+        <mat-menu #persoMenu="matMenu">
+        <button mat-menu-item (click)="editPersonal(contact)">Edit</button>
+      </mat-menu>
+    </button>
 
     <div class="deatils-container">
       <div class="details">
         <strong>E-mail:</strong>
         <p>{{ contact.email || '—' }}</p>
+      </div>
+      <div class="details">
+        <strong>Phone:</strong>
+        <p>{{ contact.phoneNumber || '—' }}</p>
       </div>
       <div class="details">
         <strong>Birth date:</strong>
@@ -43,7 +59,7 @@
         <p>{{ contact.street }} {{ contact.houseNo }}</p>
       </div>
       <div class="details">
-        <strong>City:</strong>
+        <strong>ZIP / City:</strong>
         <p> {{ contact.zipCode }} {{ contact.city }}</p>
       </div>
     </div>
@@ -53,26 +69,38 @@
   <div class="profitional-detail-container">
 
     <div class="basic-detail">
-        <img src="./assets/icons/pro-detail.png" alt="basic-detail-icon">
-        <p>BASI DETAILS</p>
+      <mat-icon>work</mat-icon>
+      <p>PROFESSIONAL DETAILS</p>
     </div>
-    
+
+
+    <button class="more_vert" mat-icon-button [matMenuTriggerFor]="profiMenu">
+      <mat-icon>more_vert</mat-icon>
+        <mat-menu #profiMenu="matMenu">
+        <button mat-menu-item (click)="editProfessional(contact)">Edit</button>
+      </mat-menu>
+    </button>
+
     <div class="deatils-container">
       <div class="details">
-        <strong>E-mail:</strong>
-        <p>{{ contact.email || '—' }}</p>
+        <strong>Position:</strong>
+        <p>{{ contact.jobTitle || '—' }}</p>
       </div>
       <div class="details">
-        <strong>Birth date:</strong>
-        <p> {{ contact.birthDate | date }}</p>
+        <strong>Company:</strong>
+        <p>{{ contact.company || '—' }}</p>
       </div>
       <div class="details">
-        <strong>Address:</strong>
-        <p>{{ contact.street }} {{ contact.houseNo }}</p>
+        <strong>Department:</strong>
+        <p>{{ contact.department || '—' }}</p>
       </div>
       <div class="details">
-        <strong>City:</strong>
-        <p> {{ contact.zipCode }} {{ contact.city }}</p>
+        <strong>Work e-mail:</strong>
+        <p>{{ contact.workEmail || '—' }}</p>
+      </div>
+      <div class="details">
+        <strong>Work phone:</strong>
+        <p>{{ contact.workPhone || '—' }}</p>
       </div>
     </div>
 
@@ -88,5 +116,4 @@
 
 <div class="btn-container">
   <button class="back-btn" mat-button routerLink="/user">Back to contacts</button>
-  <button class="save-btn" mat-button routerLink="/user">Save Change</button>
 </div>

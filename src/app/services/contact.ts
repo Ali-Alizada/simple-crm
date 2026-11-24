@@ -9,6 +9,7 @@ import {
   doc,
   docData,
   serverTimestamp,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 
@@ -52,6 +53,19 @@ export class ContactService {
       return docData(contactRef).pipe(
         map((contact) => contact ? new User({ ...contact, id }) : null)
       );
+    });
+  }
+
+  updateContact(id: string, changes: Partial<User>) {
+    return runInInjectionContext(this.injector, () => {
+      const contactRef = doc(this.firestore, 'contacts', id);
+      const contactChanges: Partial<User> = { ...changes };
+      delete contactChanges.id;
+
+      return updateDoc(contactRef, {
+        ...contactChanges,
+        updatedAt: serverTimestamp(),
+      });
     });
   }
 }

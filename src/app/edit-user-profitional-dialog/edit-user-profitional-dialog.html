@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Edit professional details</h2>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Job title</mat-label>
+    <input matInput [(ngModel)]="user.jobTitle" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Company</mat-label>
+    <input matInput [(ngModel)]="user.company" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Department</mat-label>
+    <input matInput [(ngModel)]="user.department" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Work e-mail</mat-label>
+    <input matInput type="email" [(ngModel)]="user.workEmail" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Work phone</mat-label>
+    <input matInput type="tel" [(ngModel)]="user.workPhone" [disabled]="saving">
+  </mat-form-field>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()" [disabled]="saving">Cancel</button>
+  <button mat-flat-button (click)="save()" [disabled]="saving">Save</button>
+</div>

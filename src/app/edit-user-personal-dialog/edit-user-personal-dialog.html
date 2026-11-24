@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Edit personal details</h2>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Personal e-mail</mat-label>
+    <input matInput type="email" [(ngModel)]="user.email" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Phone</mat-label>
+    <input matInput type="tel" [(ngModel)]="user.phoneNumber" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Birth date</mat-label>
+    <input matInput [matDatepicker]="birthPicker" [(ngModel)]="birthDate" [disabled]="saving">
+    <mat-datepicker-toggle matIconSuffix [for]="birthPicker"></mat-datepicker-toggle>
+    <mat-datepicker #birthPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Street</mat-label>
+    <input matInput [(ngModel)]="user.street" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>House number</mat-label>
+    <input matInput [(ngModel)]="user.houseNo" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>ZIP code</mat-label>
+    <input matInput [(ngModel)]="user.zipCode" [disabled]="saving">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>City</mat-label>
+    <input matInput [(ngModel)]="user.city" [disabled]="saving">
+  </mat-form-field>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()" [disabled]="saving">Cancel</button>
+  <button mat-flat-button (click)="save()" [disabled]="saving">Save</button>
+</div>
