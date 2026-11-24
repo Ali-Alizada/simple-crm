@@ -1,0 +1,30 @@
+h2{
+  text-align: center;
+}
+
+.professtionl-dialog-container{
+  width: auto;
+  max-width: 90vw;
+
+  .job-info-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+  }
+  .work-mail-container{
+    width: 100%;
+  }
+
+  .departement-info-contaienr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+  }
+
+}

@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { User } from '../../models/user.class';
 import { ContactService } from '../services/contact';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatProgressBarModule],
   selector: 'app-edit-user-profitional-dialog',
   styleUrl: './edit-user-profitional-dialog.scss',
   templateUrl: './edit-user-profitional-dialog.html',
@@ -17,6 +18,7 @@ import { ContactService } from '../services/contact';
 export class EditUserProfitionalDialog {
   user: User;
   saving = false;
+  loading = false;
   errorMessage = '';
 
   constructor(
@@ -31,6 +33,7 @@ export class EditUserProfitionalDialog {
     if (this.saving) return;
 
     this.saving = true;
+    this.loading = true;
     this.errorMessage = '';
     try {
       await this.contactService.updateContact(this.user.id, {
@@ -46,6 +49,7 @@ export class EditUserProfitionalDialog {
       this.errorMessage = 'The professional details could not be saved.';
     } finally {
       this.saving = false;
+      this.loading = false;
     }
   }
 

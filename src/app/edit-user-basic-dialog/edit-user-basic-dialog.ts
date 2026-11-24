@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { User } from '../../models/user.class';
 import { ContactService } from '../services/contact';
+import {MatProgressBarModule} from '@angular/material/progress-bar'
 
 @Component({
-  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatProgressBarModule],
   selector: 'app-edit-user-basic-dialog',
   styleUrl: './edit-user-basic-dialog.scss',
   templateUrl: './edit-user-basic-dialog.html',
@@ -17,6 +18,7 @@ import { ContactService } from '../services/contact';
 export class EditUserBasicDialog {
   user: User;
   saving = false;
+  loading = false;
   errorMessage = '';
 
   constructor(
@@ -31,11 +33,13 @@ export class EditUserBasicDialog {
     if (this.saving) return;
 
     this.saving = true;
+    this.loading = true;
     this.errorMessage = '';
     try {
       await this.contactService.updateContact(this.user.id, {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
+        email: this.user.email,
       });
       this.dialogRef.close(true);
     } catch (error) {
@@ -43,6 +47,7 @@ export class EditUserBasicDialog {
       this.errorMessage = 'The basic details could not be saved.';
     } finally {
       this.saving = false;
+      this.loading = false;
     }
   }
 

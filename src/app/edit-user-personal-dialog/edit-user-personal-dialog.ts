@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { User } from '../../models/user.class';
 import { ContactService } from '../services/contact';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   imports: [
@@ -18,6 +19,7 @@ import { ContactService } from '../services/contact';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressBarModule,
   ],
   selector: 'app-edit-user-personal-dialog',
   styleUrl: './edit-user-personal-dialog.scss',
@@ -27,6 +29,7 @@ export class EditUserPersonalDialog {
   user: User;
   birthDate: Date | null;
   saving = false;
+  loading = false;
   errorMessage = '';
 
   constructor(
@@ -42,6 +45,7 @@ export class EditUserPersonalDialog {
     if (this.saving) return;
 
     this.saving = true;
+    this.loading = true;
     this.errorMessage = '';
     try {
       await this.contactService.updateContact(this.user.id, {
@@ -59,6 +63,7 @@ export class EditUserPersonalDialog {
       this.errorMessage = 'The personal details could not be saved.';
     } finally {
       this.saving = false;
+      this.loading = false;
     }
   }
 

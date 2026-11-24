@@ -1,14 +1,23 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <h2 mat-dialog-title>Edit basic details</h2>
 
-<div mat-dialog-content>
-  <mat-form-field appearance="outline">
+<div mat-dialog-content class="basic-dialog-container">
+
+  <div class="basic-name-container">
+    <mat-form-field appearance="outline">
     <mat-label>First name</mat-label>
-    <input matInput [(ngModel)]="user.firstName" [disabled]="saving">
+    <input [disabled]="loading" matInput [(ngModel)]="user.firstName" [disabled]="saving">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Last name</mat-label>
-    <input matInput [(ngModel)]="user.lastName" [disabled]="saving">
+    <input [disabled]="loading" matInput [(ngModel)]="user.lastName" [disabled]="saving">
+  </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="meil-container">
+    <mat-label>E-mail</mat-label>
+    <input [disabled]="loading" matInput [(ngModel)]="user.email" [disabled]="saving">
   </mat-form-field>
 
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>

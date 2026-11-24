@@ -1,30 +1,37 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <h2 mat-dialog-title>Edit professional details</h2>
 
-<div mat-dialog-content>
-  <mat-form-field appearance="outline">
-    <mat-label>Job title</mat-label>
-    <input matInput [(ngModel)]="user.jobTitle" [disabled]="saving">
-  </mat-form-field>
+<div mat-dialog-content class="professtionl-dialog-container">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Company</mat-label>
-    <input matInput [(ngModel)]="user.company" [disabled]="saving">
-  </mat-form-field>
+  <div class="job-info-container">
+        <mat-form-field appearance="outline">
+        <mat-label>Job title</mat-label>
+        <input [disabled]="loading" matInput [(ngModel)]="user.jobTitle" [disabled]="saving">
+      </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Department</mat-label>
-    <input matInput [(ngModel)]="user.department" [disabled]="saving">
-  </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Company</mat-label>
+        <input matInput [(ngModel)]="user.company" [disabled]="saving">
+      </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" class="work-mail-container">
     <mat-label>Work e-mail</mat-label>
-    <input matInput type="email" [(ngModel)]="user.workEmail" [disabled]="saving">
+    <input [disabled]="loading" matInput type="email" [(ngModel)]="user.workEmail" [disabled]="saving">
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Work phone</mat-label>
-    <input matInput type="tel" [(ngModel)]="user.workPhone" [disabled]="saving">
-  </mat-form-field>
+  <div class="departement-info-contaienr">
+      <mat-form-field appearance="outline">
+      <mat-label>Department</mat-label>
+      <input matInput [(ngModel)]="user.department" [disabled]="saving">
+    </mat-form-field>
+
+      <mat-form-field appearance="outline">
+      <mat-label>Work phone</mat-label>
+      <input [disabled]="loading"  matInput type="tel" [(ngModel)]="user.workPhone" [disabled]="saving">
+    </mat-form-field>
+  </div>
+
 
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 </div>

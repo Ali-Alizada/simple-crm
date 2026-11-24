@@ -1,0 +1,29 @@
+h2{
+  text-align: center;
+}
+
+.personal-dialog-container{
+  width: auto;
+  max-width: 90vw;
+
+  .personal-contact-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .bDate-container{
+    width: 100%;
+  }
+
+  .personal-address-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}

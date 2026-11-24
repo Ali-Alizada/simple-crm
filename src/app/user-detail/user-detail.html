@@ -22,6 +22,7 @@
 
       <div class="detail-profile-container">
         <mat-card-title>{{ contact.firstName }} {{ contact.lastName }}</mat-card-title>
+        <p>{{ contact.email || '—' }}</p>
       </div>
 
     </mat-card-header>
@@ -59,7 +60,7 @@
         <p>{{ contact.street }} {{ contact.houseNo }}</p>
       </div>
       <div class="details">
-        <strong>ZIP / City:</strong>
+        <strong>ZipC / City:</strong>
         <p> {{ contact.zipCode }} {{ contact.city }}</p>
       </div>
     </div>

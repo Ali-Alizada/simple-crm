@@ -1,0 +1,21 @@
+h2{
+  text-align: center;
+}
+
+.basic-dialog-container{
+  max-width: 90vw;
+  width: auto;
+
+  .basic-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .meil-container{
+    width: 100%;
+  }
+}
