@@ -1,1 +1,81 @@
-<p>dashboard works!</p>
+<main class="dashboard-page" *ngIf="dashboardData$ | async as data">
+  <header class="dashboard-header">
+    <div>
+      <p class="eyebrow">SIMPLE CRM / OVERVIEW</p>
+      <h1>Dashboard</h1>
+      <p class="subtitle">A quick overview of your contacts and companies.</p>
+    </div>
+    <button mat-flat-button color="primary" (click)="openAddContactDialog()">
+      <mat-icon>person_add</mat-icon>
+      Add contact
+    </button>
+  </header>
+
+  <section class="summary-grid" aria-label="CRM summary">
+    <mat-card class="summary-card total-card">
+      <div class="summary-icon"><mat-icon>groups</mat-icon></div>
+      <div>
+        <p>Total contacts</p>
+        <strong>{{ data.totalContacts }}</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-icon"><mat-icon>business</mat-icon></div>
+      <div>
+        <p>Companies</p>
+        <strong>{{ data.companies }}</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-icon"><mat-icon>mail</mat-icon></div>
+      <div>
+        <p>With e-mail</p>
+        <strong>{{ data.contactsWithEmail }}</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-icon"><mat-icon>work</mat-icon></div>
+      <div>
+        <p>With job title</p>
+        <strong>{{ data.contactsWithRole }}</strong>
+      </div>
+    </mat-card>
+  </section>
+
+  <mat-card class="contacts-card">
+    <div class="section-heading">
+      <div>
+        <h2>Contacts</h2>
+        <p>Your saved contacts, ready to manage.</p>
+      </div>
+      <a mat-button routerLink="/user">View all</a>
+    </div>
+
+    <div class="contact-list" *ngIf="data.contacts.length; else emptyContacts">
+      <a
+        class="contact-row"
+        *ngFor="let contact of data.contacts"
+        [routerLink]="['/user', contact.id]"
+      >
+        <span class="contact-avatar"><mat-icon>person</mat-icon></span>
+        <span class="contact-info">
+          <strong>{{ contact.firstName }} {{ contact.lastName }}</strong>
+          <small>{{ contact.email || 'No e-mail added' }}</small>
+        </span>
+        <span class="contact-company">{{ contact.company || contact.jobTitle || 'Personal contact' }}</span>
+        <mat-icon class="row-arrow">chevron_right</mat-icon>
+      </a>
+    </div>
+
+    <ng-template #emptyContacts>
+      <div class="empty-state">
+        <mat-icon>person_search</mat-icon>
+        <p>No contacts yet. Add your first contact to get started.</p>
+        <button mat-stroked-button (click)="openAddContactDialog()">Add first contact</button>
+      </div>
+    </ng-template>
+  </mat-card>
+</main>

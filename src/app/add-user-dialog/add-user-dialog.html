@@ -1,98 +1,106 @@
-<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="saving" mode="indeterminate"></mat-progress-bar>
 
-<div mat-dialog-content>
-  <h1 mat-dialog-title>Add User</h1>
-  <!-- <p>Add new User</p> -->
+<h2 mat-dialog-title>Add contact</h2>
 
-  <div class="form-name-container">
-    <mat-form-field appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="your name gose here">
-      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-      <!-- <mat-hint>Please enter a name</mat-hint> -->
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="your name gose here">
-      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-      <!-- <mat-hint>Please enter a name</mat-hint> -->
-    </mat-form-field>
-
-  </div>
-
-  <div>
-      <mat-form-field appearance="outline" class="form-date-container">
-      <mat-label>E-mail</mat-label>
-      <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="your email gose here">
-      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-      <!-- <mat-hint>Please enter a name</mat-hint> -->
+<form #contactForm="ngForm" mat-dialog-content (ngSubmit)="saveUser()">
+  <section class="form-section">
+    <h3>Basic details</h3>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput name="firstName" [(ngModel)]="user.firstName" required [disabled]="saving">
       </mat-form-field>
-  </div>
 
-  <div>
-      <mat-form-field appearance="outline" class="form-date-container">
-        <mat-label>Birth Date</mat-label>
-        <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="your birth date" [matDatepicker]="picker1">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-        <!-- <mat-hint>Please enter a name</mat-hint> -->
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput name="lastName" [(ngModel)]="user.lastName" required [disabled]="saving">
       </mat-form-field>
-  </div>
-
-  <div class="adressA">
-    <div>
-          <mat-form-field appearance="outline" class="form-adressOne-container">
-          <mat-label>Street</mat-label>
-          <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="your street name">
-          <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
     </div>
+  </section>
 
-    <div>
-          <mat-form-field appearance="outline" class="form-adressTow-container">
-          <mat-label>Hose No.</mat-label>
-          <input [disabled]="loading" [(ngModel)]="user.houseNo" matInput placeholder="your hose No.">
-          <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
+  <section class="form-section">
+    <h3>Personal details</h3>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Personal e-mail</mat-label>
+        <input matInput type="email" name="email" [(ngModel)]="user.email" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput type="tel" name="phoneNumber" [(ngModel)]="user.phoneNumber" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Birth date</mat-label>
+        <input matInput name="birthDate" [matDatepicker]="birthPicker" [(ngModel)]="birthDate" [disabled]="saving">
+        <mat-datepicker-toggle matIconSuffix [for]="birthPicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput name="street" [(ngModel)]="user.street" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>House number</mat-label>
+        <input matInput name="houseNo" [(ngModel)]="user.houseNo" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ZIP code</mat-label>
+        <input matInput name="zipCode" [(ngModel)]="user.zipCode" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput name="city" [(ngModel)]="user.city" [disabled]="saving">
+      </mat-form-field>
     </div>
-  </div>
+  </section>
 
-  <div class="adressB">
-      <div>
-        <mat-form-field appearance="outline" class="adressThree-container">
-        <mat-label>Zip Code</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="your zip code">
-        <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
+  <section class="form-section">
+    <h3>Professional details</h3>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Job title</mat-label>
+        <input matInput name="jobTitle" [(ngModel)]="user.jobTitle" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Company</mat-label>
+        <input matInput name="company" [(ngModel)]="user.company" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <input matInput name="department" [(ngModel)]="user.department" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Work e-mail</mat-label>
+        <input matInput type="email" name="workEmail" [(ngModel)]="user.workEmail" [disabled]="saving">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Work phone</mat-label>
+        <input matInput type="tel" name="workPhone" [(ngModel)]="user.workPhone" [disabled]="saving">
+      </mat-form-field>
     </div>
+  </section>
 
-    <div>
-          <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="your city name">
-          <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
-    </div>
-  </div>
-</div>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</form>
 
-<div class="dialog-btns" mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close()">
-    Cancel
-  </button>
-
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()" [disabled]="saving">Cancel</button>
   <button
-    mat-button
+    mat-flat-button
     cdkFocusInitial
-    [disabled]="saving"
-    [disabled]="loading"
-    (click)="saveUser()">
-    {{ saving ? 'Saving...' : 'Save' }}
+    [disabled]="saving || contactForm.invalid"
+    (click)="saveUser()"
+  >
+    {{ saving ? 'Saving...' : 'Save contact' }}
   </button>
 </div>
-
-<p *ngIf="errorMessage" class="error-message">
-  {{ errorMessage }}
-</p>
-

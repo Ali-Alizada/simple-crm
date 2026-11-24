@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddUserDialog {
   user = new User();
-  birthDate!: Date;
+  birthDate: Date | null = null;
   loading = false;
 
 
